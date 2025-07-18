@@ -146,3 +146,4 @@
 // const saudacao2 = fabricaDeSaudacao('Peter')
 // saudacao2()
 // saudacao2('Boa noite')
+

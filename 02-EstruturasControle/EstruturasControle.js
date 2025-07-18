@@ -83,4 +83,51 @@
 //     }
 // }
 
+/// -> Operador Ternário  
+
+// let money = 5000.50
+// const ps5 = 7000.00
+// const xbox360 = 2000.00
+
+/// Com if..else
+// if (money >= ps5){
+//     console.log(`Você pode comprar :)`)
+// }else{
+//     console.log(`Você não pode comprar :(`)
+// }
+
+// Com Operador Ternário
+// console.log(money >= xbox360 ? `Você pode comprar :)` : `Você não pode comprar :(`)
+
+
+/// -> Variações de For
+
+// 1 - For...Of
+// const nomes = ["Ana", "Bruno", "Carlos"];
+
+// for (const nomesAlunos of nomes ){
+//     console.log(`Nome dos Aluno(a): ${nomesAlunos}`)
+// }
+
+// 2 - For..In
+
+// const livro = {
+//     titulo: "Dom Casmurro",
+//     autor: "Machado de Assis",
+//     ano: 1899
+//   };
+
+// for (const descricaoLivro in livro){
+//     console.log(`${descricaoLivro}: ${livro[descricaoLivro]}`)
+// }
+
+// 3 - forEach
+
+// const numeros = [1,2,3,4,5]
+
+// numeros.forEach(function(n){
+//     console.log(`Número: ${n}`)
+// })
+
+// numeros.forEach((n, i, numeros) => console.log(`Ordem no Array: ${i} | Número: ${n} | Array Original: ${numeros}`))
 

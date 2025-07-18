@@ -38,3 +38,18 @@ Definição: Utilizado principalmente em **estruturas de repetição** para inte
 
 2. #### Continue <br>
 Definição: Utilizado para 'pular' ou **continuar** o loop em estruturas de repetição quando a condição for **false**, ou seja se a condição for true ele retorna, caso contrário ele **continua** o loop.
+
+
+## Operador Ternário
+Definição: **Forma mais abrevida de se escrever** if ... else. Onde primeiro inserimos a **condição**, posteriormente sinal de **interrogação** ``?`` , colocamos após o sinal **return se a condição for true**, depois sinal de ``:``  e **return se a condição for false**.
+
+## Variações do For
+
+1. #### For...Of
+Definição: Usado para percorrer valores interáveis (valores como array e string), repetindo a função até completar de percorrer todos os valores.
+
+2. #### For..In
+Definição: **Percorre os indíces ou chaves** de um **objeto** ou array. Recomendado não utilizar em array, pois pode gerar problemas de criação de chaves extras.
+
+3. #### ForEach
+Definição: É uma das funções nativas do JavaScript que **percorre valores de um array um por um**, não tendo como parar o loop com um break ou continue como em um for. Podendo colocar como parâmetros na função, **como parâmetro que vai mapear cada valor no array**, **o indicator** (posição de cada elemento no array) e o **próprio array retornado por inteiro**.

@@ -1,27 +1,33 @@
-// 1 - Object Literal and Object
-// const city = { // Object Literal tem propriedades fixas, não sendo reutilizável
+// 1. Object Literal
+
+// const city = {
 //     description: 'have must people'
 // }
 
-// class Produto { // Object sendo reutilizável e não tendo propriedades fixas
-//     constructor(nome,preco){
-//         this.nome = nome;
-//         this.preco = preco;
+// Com Object.create()
+
+// const saudacao = {
+//     falar () {
+//         console.log(`Saudar ${this.nome}`)
 //     }
 // }
 
-// const produto1 = new Produto ('Laptop', 2500)
-// console.log(produto1)
+// const saudacao1 = Object.create(saudacao)
+// saudacao1.nome = 'Maria'
+// saudacao1.falar()
 
-//2 - deletando/inserindo propriedades
+
+//2. deletando/inserindo propriedades
 
 // const frut = {
 //     name: 'Apple',
 //     color: 'Red',
 // }
 // frut.weight = '200g' //Adicionando propriedades
+// console.log(frut.hasOwnProperty('color')) // Verifica se a propriedade existe
 // delete frut.color //Deletando propriedades
 // console.log(frut)
+// console.log(frut.hasOwnProperty('color'))
 
 // class Fruts {
 //     constructor(name,preco){
@@ -33,9 +39,10 @@
 // const Fruts1 = new Fruts ('Banana', 12.00)
 // Fruts1.color = 'Yellow' //Adicionando propriedades
 // delete Fruts1.preco //Deletando propriedades
+// console.log()
 // console.log(Fruts1)
 
-// 3 - Métodos para Objetos
+// 3. Métodos para Objetos
 
 // class Pessoa {
 //     constructor(name){
@@ -52,20 +59,108 @@
 // Object.assign(pessoa1, people) // Object.assign - pega as propriedades que têm no 'people' e mescla no 'pessoa1'
 // console.log(pessoa1)
 
-// 4 -Mutação
+// 4. Mutação de Objetos
 
 // const dinossaur = {
 //     type: 'animal',
-//     information: true
+//     information: true,
+//         localizacao: {
+//             pais: this.pais
+//         }
 // }
 
-// const animal = dinossaur // Modifica um e a modificação ocorre no outro também
+// const animalPre = Object.assign({},dinossaur) //Shallow copy
+// animalPre.nome = 'T-rex'
+
+// const animalPre2 = {...dinossaur} //Shallow copy 
+// animalPre2.nome = 'Raptor'
+// animalPre2.localizacao.pais = 'Não definido' //Shallow copy não funciona com objetos aninhados
+
+// const animalPre3 = structuredClone(dinossaur)
+// animalPre3.localizacao.pais = 'Canada'
+
+// const animal = dinossaur // Mutação
 // animal.weight = 1200 + 'kg'
+
 // console.log(animal)
 // console.log(dinossaur)
+// console.log(animalPre)
+// console.log(animalPre2)
+// console.log(animalPre3)
 
-// Extra - String métodos
-// Sendo String também um objeto ela possui métodos
+// 4.1 Object.freeze
+// const biblioteca = {
+//     nomeLivro: 'Ortodoxia',
+//         descricao: {
+//             genero: 'Não definido'
+//         }
+// }
+// Object.freeze(biblioteca)
+// biblioteca.sinopse = 'Livro muito bom' // Não funcionou
+// biblioteca.autor = 'Chesterton' // Não funcionou
+// delete biblioteca.nomeLivro // Não funcionou
+// biblioteca.descricao.genero = 'Definido pelo Shallow Freeze' // Funciona em subobjetos
+// console.log(biblioteca)
+
+// // 4.2 Deep Freeze
+// const livro = {
+//     nomeLivro: 'Quincas Borba',
+//         descricao: {
+//             genero: 'Não definido'
+//         }
+// }
+
+// function deepFreeze(obj) {
+//     Object.freeze(obj);
+//     for (let chave in obj) {
+//         if (
+//             typeof obj[chave] === 'object' &&
+//             obj[chave] !== null &&
+//             !Object.isFrozen(obj[chave])
+//         ) {
+//             deepFreeze(obj[chave])
+//         }
+//     }
+// }
+
+// deepFreeze(livro);
+// livro.descricao.genero = 'Definido' // Não funciona
+// console.log(livro)
+
+
+// 5. For in
+// const candidato = {
+//     nome: 'Peter',
+//     dev: "Senior"
+// }
+// const exibirCanditados = () => {
+//     for (const pessoa in candidato) {
+//         console.log(`${pessoa}: ${candidato[pessoa]}`)
+//     }
+// }
+// exibirCanditados()
+
+
+// 6. Destructuring
+// const candidato = {
+//     nome: 'Pedro',
+//     idade: 23
+// }
+// const {nome: nomeCandidato, profissao = 'Não especializado', idade} = candidato
+// console.log(`${nomeCandidato} e ${idade} e ${profissao}`)
+
+// 6.1 - Destructuring em funções:
+// function catalogo({produto, preco}){
+//     return `Nome do produto: ${produto} | Preço: ${preco}`
+// }
+
+// const produto1 = {produto: 'Laptop', preco: 2500.00}
+
+// console.log(catalogo(produto1))
+
+/// Extra 
+
+// 7. String métodos
 
 // Trim
 // const text = ' AAAAAAA \n '
@@ -90,27 +185,3 @@
 //Repeat
 // const text = "Trabalho Dev!! \n"
 // console.log(text.repeat(5)) //repeat = repete com determinados parâmetros
-
-// 5 - For in
-// Iteração de loops com objetos sendo as propriedades e valores atribuidos
-// const candidato = {
-//     nome: 'Peter',
-//     dev: "Senior"
-// }
-// const exibirCanditados = () => {
-//     for (const pessoa in candidato) { //Sendo 'pessoa' os atributos e candidato = 'propriedades'
-//         console.log(`${pessoa}: ${candidato[pessoa]}`)
-//     }
-// }
-// exibirCanditados()
-
-//Destructuring
-//Ele mapeia o atributo inserido no objeto de acordo com o mesmo nome da propriedade
-// const candidato = {
-//     nome: 'Pedro',
-//     idade: 23
-// }
-//Podendo atribuir outro nome a variavel 
-//Valores definidos como padrão caso o usuário não tenha
-// const {nome: nomeCandidato, profissao = 'Não especializado', idade} = candidato
-// console.log(`${nomeCandidato} e ${idade} e ${profissao}`)
