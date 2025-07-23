@@ -112,6 +112,7 @@
 
 // const iterador = Carrinho();
 
-// console.log(iterador.next())
-// console.log(iterador.next())
-// console.log(iterador.next())
+// iterador.next()
+// iterador.next()
+// iterador.next()
+
